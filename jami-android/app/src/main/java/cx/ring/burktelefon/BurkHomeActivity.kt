@@ -16,7 +16,6 @@
  */
 package cx.ring.burktelefon
 
-import android.app.ActivityManager
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -94,14 +93,14 @@ class BurkHomeActivity : AppCompatActivity() {
             finish()
             return
         }
-        if (prefs.isKioskModeEnabled && !isInLockTaskModeCompat()) {
-            try { startLockTask() } catch (_: IllegalStateException) { /* not allowlisted on this device yet */ }
-        }
-    }
-
-    private fun isInLockTaskModeCompat(): Boolean {
-        val am = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        return am.lockTaskModeState != ActivityManager.LOCK_TASK_MODE_NONE
+        // Deliberately NOT using startLockTask()/screen pinning here: Android
+        // treats a genuine incoming Telecom call as important enough to
+        // interrupt a pinned screen, but only via its own "detach to answer"
+        // system prompt — which pre-empts our blind Inkommande screen
+        // entirely. Kiosk protection here is limited to the Home-launcher
+        // registration and the back-button no-op below; a true unattended
+        // lock (no exit gesture at all) would need Device Owner provisioning,
+        // which is a bigger follow-up.
     }
 
     private fun callContact(vm: ConversationItemViewModel) {
@@ -127,10 +126,8 @@ class BurkHomeActivity : AppCompatActivity() {
         dialogBinding.burkKioskSwitch.setOnCheckedChangeListener { _, checked ->
             prefs.isKioskModeEnabled = checked
             BurkLauncher.setEnabled(this, checked)
-            if (!checked && isInLockTaskModeCompat()) stopLockTask()
         }
         dialogBinding.burkLeaveKioskRow.setOnClickListener {
-            if (isInLockTaskModeCompat()) stopLockTask()
             startActivity(Intent(this, HomeActivity::class.java))
             dialog.dismiss()
         }
