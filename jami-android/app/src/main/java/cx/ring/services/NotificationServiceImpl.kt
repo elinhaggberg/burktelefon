@@ -136,6 +136,15 @@ class NotificationServiceImpl(
             mCallService.refuse(accountId, conference.id)
             return Maybe.empty()
         }
+        try {
+            val audioManager = mContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+            val ringerMode = audioManager.ringerMode
+            val shouldMute = (ringerMode == AudioManager.RINGER_MODE_VIBRATE
+                    || ringerMode == AudioManager.RINGER_MODE_SILENT)
+            mCallService.muteRingTone(shouldMute)
+        } catch (e: Exception) {
+            Log.w(TAG, "Error muting ringtone", e)
+        }
         val viewIntent = PendingIntent.getActivity(mContext, random.nextInt(),
             BurkIncomingCallActivity.intent(mContext, accountId, conference.id)
                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK), ContentUri.immutable())
