@@ -20,33 +20,33 @@
 
         <FrameLayout
             android:id="@+id/burk_photo_container"
-            android:layout_width="150dp"
-            android:layout_height="150dp">
+            android:layout_width="176dp"
+            android:layout_height="176dp">
 
             <View
                 android:id="@+id/burk_ring_1"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="176dp"
+                android:layout_height="176dp"
                 android:layout_gravity="center"
                 android:background="@drawable/bg_burk_ring_pulse" />
 
             <View
                 android:id="@+id/burk_ring_2"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="176dp"
+                android:layout_height="176dp"
                 android:layout_gravity="center"
                 android:background="@drawable/bg_burk_ring_pulse" />
 
             <ImageView
                 android:id="@+id/burk_contact_photo"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="176dp"
+                android:layout_height="176dp"
                 android:scaleType="centerCrop"
                 android:importantForAccessibility="no" />
 
             <View
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="176dp"
+                android:layout_height="176dp"
                 android:background="@drawable/bg_burk_circle_stroke" />
         </FrameLayout>
 
@@ -54,7 +54,7 @@
             android:id="@+id/burk_status_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="24dp"
             android:orientation="horizontal">
 
             <TextView
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/burk_calling"
-                android:textSize="16sp"
+                android:textSize="19sp"
                 android:textColor="@color/burk_blue"
                 style="@style/Burk.Body.SemiBold" />
 
@@ -71,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="."
-                android:textSize="16sp"
+                android:textSize="19sp"
                 android:textColor="@color/burk_blue"
                 style="@style/Burk.Body.SemiBold" />
 
@@ -80,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="."
-                android:textSize="16sp"
+                android:textSize="19sp"
                 android:textColor="@color/burk_blue"
                 style="@style/Burk.Body.SemiBold" />
 
@@ -89,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="."
-                android:textSize="16sp"
+                android:textSize="19sp"
                 android:textColor="@color/burk_blue"
                 style="@style/Burk.Body.SemiBold" />
         </LinearLayout>
@@ -98,7 +98,7 @@
             android:id="@+id/burk_contact_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="32sp"
+            android:textSize="38sp"
             android:gravity="center"
             style="@style/Burk.Display"
             tools:text="Farmor" />
@@ -112,18 +112,18 @@
 
         <FrameLayout
             android:id="@+id/burk_hangup_button"
-            android:layout_width="72dp"
-            android:layout_height="77dp"
+            android:layout_width="88dp"
+            android:layout_height="94dp"
             android:background="@drawable/bg_burk_button_hangup"
             android:clickable="true"
             android:focusable="true"
             android:contentDescription="@string/burk_cd_hangup">
 
             <ImageView
-                android:layout_width="34dp"
-                android:layout_height="34dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="6dp"
                 android:rotation="133"
                 android:src="@drawable/ic_burk_handset"
                 android:importantForAccessibility="no" />
@@ -132,9 +132,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
+            android:layout_marginTop="11dp"
             android:text="@string/burk_hangup"
-            android:textSize="14sp"
+            android:textSize="17sp"
             android:textColor="@color/burk_ink_muted"
             style="@style/Burk.Body.SemiBold" />
     </LinearLayout>

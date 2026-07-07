@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/burk_can_icon"
-        android:layout_width="22dp"
-        android:layout_height="27dp"
+        android:layout_width="28dp"
+        android:layout_height="34dp"
         android:layout_marginStart="22dp"
         android:layout_marginTop="24dp"
         android:rotation="-13"
@@ -23,9 +23,9 @@
         android:id="@+id/burk_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
+        android:layout_marginStart="10dp"
         android:text="@string/burk_app_name"
-        android:textSize="18sp"
+        android:textSize="24sp"
         style="@style/Burk.Display"
         app:layout_constraintBottom_toBottomOf="@id/burk_can_icon"
         app:layout_constraintStart_toEndOf="@id/burk_can_icon"
@@ -33,10 +33,10 @@
 
     <FrameLayout
         android:id="@+id/burk_settings_button"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:layout_marginEnd="18dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="18dp"
         android:background="@drawable/bg_burk_circle_stroke"
         android:contentDescription="@string/burk_cd_settings"
         android:clickable="true"
@@ -51,20 +51,20 @@
             android:orientation="horizontal">
 
             <View
-                android:layout_width="4dp"
-                android:layout_height="4dp"
-                android:layout_marginEnd="3dp"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:layout_marginEnd="4dp"
                 android:background="@drawable/bg_burk_dot" />
 
             <View
-                android:layout_width="4dp"
-                android:layout_height="4dp"
-                android:layout_marginEnd="3dp"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:layout_marginEnd="4dp"
                 android:background="@drawable/bg_burk_dot" />
 
             <View
-                android:layout_width="4dp"
-                android:layout_height="4dp"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
                 android:background="@drawable/bg_burk_dot" />
         </LinearLayout>
     </FrameLayout>
@@ -74,9 +74,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="14dp"
         android:text="@string/burk_home_prompt"
-        android:textSize="15sp"
+        android:textSize="19sp"
         android:textColor="@color/burk_ink_muted"
         style="@style/Burk.Body.SemiBold"
         app:layout_constraintStart_toStartOf="parent"
@@ -105,7 +105,7 @@
         android:layout_marginHorizontal="40dp"
         android:gravity="center"
         android:text="@string/burk_home_empty"
-        android:textSize="16sp"
+        android:textSize="19sp"
         android:visibility="gone"
         style="@style/Burk.Body"
         app:layout_constraintTop_toTopOf="@id/burk_contact_grid"

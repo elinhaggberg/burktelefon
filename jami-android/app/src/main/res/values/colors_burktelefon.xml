@@ -21,7 +21,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     <color name="burk_background">#F3EFE6</color>
     <color name="burk_board">#E7E1D4</color>
     <color name="burk_ink">#2A2621</color>
-    <color name="burk_ink_muted">#6B655B</color>
+    <color name="burk_ink_muted">#4E4A42</color>
     <color name="burk_ink_faint">#9A9488</color>
     <color name="burk_blue">#4E77C9</color>
     <color name="burk_blue_dark">#38598F</color>

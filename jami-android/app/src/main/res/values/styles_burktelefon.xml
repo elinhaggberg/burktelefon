@@ -42,9 +42,12 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <!-- Body/label font (Bitter). -->
+    <!-- Body/label font (Bitter). Explicit medium weight (not the variable
+         font's thin default instance) so body text stays readable even
+         without the .SemiBold variant. -->
     <style name="Burk.Body" parent="">
         <item name="android:fontFamily">@font/bitter_variable</item>
+        <item name="android:fontVariationSettings">\'wght\' 500</item>
         <item name="android:textColor">@color/burk_ink</item>
         <item name="android:includeFontPadding">false</item>
     </style>

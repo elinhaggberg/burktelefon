@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/burk_star_1"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="19dp"
+        android:layout_height="19dp"
         android:layout_marginStart="34dp"
         android:layout_marginTop="56dp"
         android:src="@drawable/ic_burk_star"
@@ -20,8 +20,8 @@
 
     <ImageView
         android:id="@+id/burk_star_2"
-        android:layout_width="11dp"
-        android:layout_height="11dp"
+        android:layout_width="13dp"
+        android:layout_height="13dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="120dp"
         android:src="@drawable/ic_burk_star"
@@ -32,8 +32,8 @@
 
     <ImageView
         android:id="@+id/burk_star_3"
-        android:layout_width="14dp"
-        android:layout_height="14dp"
+        android:layout_width="17dp"
+        android:layout_height="17dp"
         android:layout_marginEnd="40dp"
         android:layout_marginTop="200dp"
         android:src="@drawable/ic_burk_star"
@@ -43,8 +43,8 @@
 
     <ImageView
         android:id="@+id/burk_moon"
-        android:layout_width="46dp"
-        android:layout_height="46dp"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
         android:layout_marginEnd="34dp"
         android:layout_marginTop="150dp"
         android:src="@drawable/ic_burk_moon"
@@ -73,9 +73,9 @@
                 android:id="@+id/burk_z1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="6dp"
+                android:layout_marginEnd="7dp"
                 android:text="z"
-                android:textSize="14sp"
+                android:textSize="17sp"
                 android:textColor="@color/burk_blue"
                 style="@style/Burk.Display" />
 
@@ -83,9 +83,9 @@
                 android:id="@+id/burk_z2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="6dp"
+                android:layout_marginEnd="7dp"
                 android:text="z"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:textColor="@color/burk_blue"
                 style="@style/Burk.Display" />
 
@@ -94,25 +94,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="z"
-                android:textSize="27sp"
+                android:textSize="32sp"
                 android:textColor="@color/burk_blue"
                 style="@style/Burk.Display" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/burk_sleeping_can"
-            android:layout_width="74dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="84dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="18dp"
             android:src="@drawable/ic_burk_can_sleep"
             android:importantForAccessibility="no" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="18dp"
             android:text="@string/burk_sleep_title"
-            android:textSize="26sp"
+            android:textSize="31sp"
             android:gravity="center"
             android:lineSpacingMultiplier="1.15"
             style="@style/Burk.Display" />
@@ -125,7 +125,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="34dp"
         android:background="@drawable/bg_burk_offline_chip"
-        android:textSize="15sp"
+        android:textSize="18sp"
         android:textColor="@color/burk_blue_dark"
         style="@style/Burk.Body.SemiBold"
         tools:text="Öppnar igen kl. 09:00"
