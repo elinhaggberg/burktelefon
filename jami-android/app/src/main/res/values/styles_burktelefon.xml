@@ -48,7 +48,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
     <style name="Burk.Body.SemiBold">
         <item name="android:fontFamily">@font/bitter_variable</item>
-        <item name="android:fontVariationSettings">'wght' 600</item>
+        <item name="android:fontVariationSettings">\'wght\' 600</item>
         <item name="android:textStyle">normal</item>
     </style>
 </resources>
