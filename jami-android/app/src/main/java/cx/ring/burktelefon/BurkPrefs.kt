@@ -77,8 +77,11 @@ class BurkPrefs(context: Context) {
         private const val KEY_KIOSK_MODE = "kiosk_mode_enabled"
         private const val KEY_WINDOW_START = "window_start_minutes"
         private const val KEY_WINDOW_END = "window_end_minutes"
-        val DEFAULT_WINDOW_START_MINUTES = TimeUnit.HOURS.toMinutes(9).toInt()
-        val DEFAULT_WINDOW_END_MINUTES = TimeUnit.HOURS.toMinutes(19).toInt()
+        // TEMPORARY for manual testing: widened to cover the whole day so Sovläge
+        // doesn't kick in regardless of what time you're testing at. Revert to
+        // 9-19 (or better, add a real settings UI for this) before real use.
+        val DEFAULT_WINDOW_START_MINUTES = TimeUnit.HOURS.toMinutes(0).toInt()
+        val DEFAULT_WINDOW_END_MINUTES = TimeUnit.HOURS.toMinutes(23).toInt() + 59
         private val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
     }
 }
