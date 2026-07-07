@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+Copyright (C) 2004-2026 Savoir-faire Linux Inc.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<resources>
+    <!-- Burktelefonen kiosk launcher UI. Single-language (Swedish) by design brief. -->
+
+    <!-- Home -->
+    <string name="burk_app_name">Burktelefonen</string>
+    <string name="burk_home_prompt">Vem vill du ringa?</string>
+    <string name="burk_home_empty">Inga kontakter ännu.\nLägg till någon i Jami-appen.</string>
+    <string name="burk_cd_call_contact">Ring till %1$s</string>
+    <string name="burk_cd_settings">Inställningar</string>
+
+    <!-- Outgoing call -->
+    <string name="burk_calling">Ringer</string>
+    <string name="burk_hangup">Lägg på</string>
+    <string name="burk_cd_hangup">Lägg på</string>
+
+    <!-- Incoming call (blind — no caller name/photo, by design) -->
+    <string name="burk_incoming_title">Någon ringer!</string>
+    <string name="burk_answer">Svara</string>
+    <string name="burk_cd_answer">Svara</string>
+
+    <!-- Sleep mode -->
+    <string name="burk_sleep_title">Burktelefonen\nsover</string>
+    <string name="burk_sleep_opens_at">Öppnar igen kl. %1$s</string>
+
+    <!-- Settings menu -->
+    <string name="burk_settings_title">Inställningar</string>
+    <string name="burk_settings_offline_today">Offline idag</string>
+    <string name="burk_settings_offline_today_summary">Burktelefonen svarar inte förrän imorgon när fönstret öppnar igen.</string>
+    <string name="burk_settings_kiosk_mode">Använd som hemskärm</string>
+    <string name="burk_settings_kiosk_mode_summary">Låser enheten till Burktelefonen istället för Androids vanliga hemskärm.</string>
+    <string name="burk_settings_leave_kiosk">Lämna kiosk-läge</string>
+    <string name="burk_settings_leave_kiosk_summary">Öppnar den vanliga Jami-appen för kontakthantering.</string>
+    <string name="burk_settings_close">Stäng</string>
+</resources>

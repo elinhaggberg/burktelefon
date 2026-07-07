@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Small open tin-can mark used next to the "Burktelefonen" title on the home screen. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="22dp"
+    android:height="27dp"
+    android:viewportWidth="100"
+    android:viewportHeight="124">
+    <path
+        android:pathData="M20 22 V104 a30 8 0 0 0 60 0 V22"
+        android:strokeColor="#2A2621"
+        android:strokeWidth="7"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M20,22 a30 8 0 0 0 60 0 a30 8 0 0 0 -60 0 Z"
+        android:strokeColor="#2A2621"
+        android:strokeWidth="7"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M20 46 a30 8 0 0 0 60 0"
+        android:strokeColor="#2A2621"
+        android:strokeWidth="7"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M20 66 a30 8 0 0 0 60 0"
+        android:strokeColor="#2A2621"
+        android:strokeWidth="7"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M20 86 a30 8 0 0 0 60 0"
+        android:strokeColor="#2A2621"
+        android:strokeWidth="7"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round" />
+</vector>

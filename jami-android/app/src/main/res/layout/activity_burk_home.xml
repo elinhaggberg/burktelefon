@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/burk_background"
+    android:fitsSystemWindows="true">
+
+    <ImageView
+        android:id="@+id/burk_can_icon"
+        android:layout_width="22dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="24dp"
+        android:rotation="-13"
+        android:src="@drawable/ic_burk_can_header"
+        android:importantForAccessibility="no"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/burk_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:text="@string/burk_app_name"
+        android:textSize="18sp"
+        style="@style/Burk.Display"
+        app:layout_constraintBottom_toBottomOf="@id/burk_can_icon"
+        app:layout_constraintStart_toEndOf="@id/burk_can_icon"
+        app:layout_constraintTop_toTopOf="@id/burk_can_icon" />
+
+    <FrameLayout
+        android:id="@+id/burk_settings_button"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_burk_circle_stroke"
+        android:contentDescription="@string/burk_cd_settings"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginEnd="3dp"
+                android:background="@drawable/bg_burk_dot" />
+
+            <View
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginEnd="3dp"
+                android:background="@drawable/bg_burk_dot" />
+
+            <View
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:background="@drawable/bg_burk_dot" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/burk_prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/burk_home_prompt"
+        android:textSize="15sp"
+        android:textColor="@color/burk_ink_muted"
+        style="@style/Burk.Body.SemiBold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/burk_can_icon" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/burk_contact_grid"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="20dp"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/burk_prompt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/item_burk_contact"
+        tools:spanCount="2" />
+
+    <TextView
+        android:id="@+id/burk_empty_state"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:gravity="center"
+        android:text="@string/burk_home_empty"
+        android:textSize="16sp"
+        android:visibility="gone"
+        style="@style/Burk.Body"
+        app:layout_constraintTop_toTopOf="@id/burk_contact_grid"
+        app:layout_constraintBottom_toBottomOf="@id/burk_contact_grid"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

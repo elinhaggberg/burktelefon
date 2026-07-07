@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Crescent moon for the sleep-mode screen: an ink disc with an off-white disc
+     knocked out over it. The knockout fill must match the sleep screen's
+     background (burk_background) for the illusion to hold — same technique the
+     HTML/CSS design reference uses. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="46dp"
+    android:height="46dp"
+    android:viewportWidth="60"
+    android:viewportHeight="60">
+    <path
+        android:fillColor="#2A2621"
+        android:pathData="M8,30 A22,22 0 1,0 52,30 A22,22 0 1,0 8,30 Z" />
+    <path
+        android:fillColor="#F3EFE6"
+        android:pathData="M21,23 A19,19 0 1,0 59,23 A19,19 0 1,0 21,23 Z" />
+</vector>

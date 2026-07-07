@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/burk_background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:paddingHorizontal="24dp"
+    android:paddingTop="34dp"
+    android:paddingBottom="28dp">
+
+    <!--
+      Blind by design: this screen never shows the caller's name or photo.
+      "You see who it is once you answer" is the whole point of the concept.
+    -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <FrameLayout
+            android:layout_width="150dp"
+            android:layout_height="196dp">
+
+            <View
+                android:id="@+id/burk_ring_1"
+                android:layout_width="132dp"
+                android:layout_height="132dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_burk_ring_pulse" />
+
+            <View
+                android:id="@+id/burk_ring_2"
+                android:layout_width="132dp"
+                android:layout_height="132dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_burk_ring_pulse" />
+
+            <ImageView
+                android:id="@+id/burk_can"
+                android:layout_width="92dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_burk_can_incoming"
+                android:importantForAccessibility="no" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:text="@string/burk_incoming_title"
+            android:textSize="29sp"
+            style="@style/Burk.Display" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/burk_answer_button"
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:background="@drawable/bg_burk_button_answer"
+        android:contentDescription="@string/burk_cd_answer"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingBottom="6dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/ic_burk_handset"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/burk_answer"
+            android:textSize="26sp"
+            android:textColor="@color/white"
+            style="@style/Burk.Display" />
+    </LinearLayout>
+
+</LinearLayout>

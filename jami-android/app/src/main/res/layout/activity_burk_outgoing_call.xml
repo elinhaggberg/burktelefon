@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/burk_background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:paddingHorizontal="24dp"
+    android:paddingTop="34dp"
+    android:paddingBottom="30dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <FrameLayout
+            android:id="@+id/burk_photo_container"
+            android:layout_width="150dp"
+            android:layout_height="150dp">
+
+            <View
+                android:id="@+id/burk_ring_1"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_burk_ring_pulse" />
+
+            <View
+                android:id="@+id/burk_ring_2"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_burk_ring_pulse" />
+
+            <ImageView
+                android:id="@+id/burk_contact_photo"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:importantForAccessibility="no" />
+
+            <View
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/bg_burk_circle_stroke" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/burk_status_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/burk_status_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/burk_calling"
+                android:textSize="16sp"
+                android:textColor="@color/burk_blue"
+                style="@style/Burk.Body.SemiBold" />
+
+            <TextView
+                android:id="@+id/burk_dot_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="."
+                android:textSize="16sp"
+                android:textColor="@color/burk_blue"
+                style="@style/Burk.Body.SemiBold" />
+
+            <TextView
+                android:id="@+id/burk_dot_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="."
+                android:textSize="16sp"
+                android:textColor="@color/burk_blue"
+                style="@style/Burk.Body.SemiBold" />
+
+            <TextView
+                android:id="@+id/burk_dot_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="."
+                android:textSize="16sp"
+                android:textColor="@color/burk_blue"
+                style="@style/Burk.Body.SemiBold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/burk_contact_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="32sp"
+            android:gravity="center"
+            style="@style/Burk.Display"
+            tools:text="Farmor" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <FrameLayout
+            android:id="@+id/burk_hangup_button"
+            android:layout_width="72dp"
+            android:layout_height="77dp"
+            android:background="@drawable/bg_burk_button_hangup"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/burk_cd_hangup">
+
+            <ImageView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:rotation="133"
+                android:src="@drawable/ic_burk_handset"
+                android:importantForAccessibility="no" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:text="@string/burk_hangup"
+            android:textSize="14sp"
+            android:textColor="@color/burk_ink_muted"
+            style="@style/Burk.Body.SemiBold" />
+    </LinearLayout>
+
+</LinearLayout>

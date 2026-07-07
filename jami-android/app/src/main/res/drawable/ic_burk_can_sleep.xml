@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Upside-down tin can hanging slack on its string, for the sleep-mode screen. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="74dp"
+    android:height="150dp"
+    android:viewportWidth="100"
+    android:viewportHeight="202">
+    <path
+        android:pathData="M50 6 V48"
+        android:strokeColor="#2A2621"
+        android:strokeWidth="4"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M20 178 V56 a30 8 0 0 1 60 0 V178"
+        android:strokeColor="#2A2621"
+        android:strokeWidth="4"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M20,178 a30 8 0 0 0 60 0 a30 8 0 0 0 -60 0 Z"
+        android:strokeColor="#2A2621"
+        android:strokeWidth="4"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M20 82 a30 8 0 0 0 60 0"
+        android:strokeColor="#2A2621"
+        android:strokeWidth="4"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M20 104 a30 8 0 0 0 60 0"
+        android:strokeColor="#2A2621"
+        android:strokeWidth="4"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M20 126 a30 8 0 0 0 60 0"
+        android:strokeColor="#2A2621"
+        android:strokeWidth="4"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M20 150 a30 8 0 0 0 60 0"
+        android:strokeColor="#2A2621"
+        android:strokeWidth="4"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round" />
+</vector>

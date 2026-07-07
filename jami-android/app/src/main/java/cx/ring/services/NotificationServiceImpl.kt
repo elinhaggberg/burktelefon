@@ -46,6 +46,10 @@ import androidx.core.graphics.drawable.IconCompat
 import com.bumptech.glide.Glide
 import cx.ring.R
 import cx.ring.application.JamiApplication
+import cx.ring.burktelefon.BurkAvailability
+import cx.ring.burktelefon.BurkCallActivity
+import cx.ring.burktelefon.BurkIncomingCallActivity
+import cx.ring.burktelefon.BurkPrefs
 import cx.ring.client.CallActivity
 import cx.ring.client.ConversationActivity
 import cx.ring.client.HomeActivity
@@ -120,13 +124,49 @@ class NotificationServiceImpl(
                 .setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_USER_ACTION))
     }
 
+    /**
+     * Burktelefonen's incoming-call notification: blind by design (no caller
+     * name or photo anywhere, not even here) and gated by the local
+     * availability window / "offline idag" — a sleeping or offline-today
+     * device must never ring or show anything for an incoming call.
+     */
+    private fun buildBurkIncomingNotification(conference: Conference, accountId: String): Maybe<Notification> {
+        val burkPrefs = BurkPrefs(mContext)
+        if (!BurkAvailability.isAwake(burkPrefs)) {
+            mCallService.refuse(accountId, conference.id)
+            return Maybe.empty()
+        }
+        val viewIntent = PendingIntent.getActivity(mContext, random.nextInt(),
+            BurkIncomingCallActivity.intent(mContext, accountId, conference.id)
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK), ContentUri.immutable())
+        return Maybe.just(NotificationCompat.Builder(mContext, NOTIF_CHANNEL_INCOMING_CALL)
+            .setContentTitle(mContext.getString(R.string.burk_app_name))
+            .setContentText(mContext.getString(R.string.burk_incoming_title))
+            .setPriority(NotificationCompat.PRIORITY_MAX)
+            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+            .setCategory(NotificationCompat.CATEGORY_CALL)
+            .setSmallIcon(R.drawable.ic_ring_logo_white)
+            .setContentIntent(viewIntent)
+            .setFullScreenIntent(viewIntent, true)
+            .setSound(null)
+            .setVibrate(null)
+            .setOngoing(true)
+            .build()
+            .apply { flags = flags or NotificationCompat.FLAG_INSISTENT })
+    }
+
     private fun buildCallNotification(conference: Conference): Maybe<Notification> {
         val call = conference.firstCall ?: return Maybe.empty()
         val accountId = call.account
         val peer = call.contact ?: return Maybe.empty()
+        val burkKioskMode = BurkPrefs(mContext).isKioskModeEnabled
+        if (burkKioskMode && conference.isIncoming && conference.isRinging) {
+            return buildBurkIncomingNotification(conference, accountId)
+        }
         return getProfileSingle(accountId, peer)
             .flatMapMaybe { contact ->
-                val callClass = if (DeviceUtils.isTv(mContext)) TVCallActivity::class.java else CallActivity::class.java
+                val callClass = if (burkKioskMode) BurkCallActivity::class.java
+                    else if (DeviceUtils.isTv(mContext)) TVCallActivity::class.java else CallActivity::class.java
                 val viewIntent = PendingIntent.getActivity(mContext, random.nextInt(), Intent(Intent.ACTION_VIEW)
                     .setClass(mContext, callClass)
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

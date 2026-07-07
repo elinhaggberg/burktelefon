@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Flat "pressed block" shadow look: a solid shadow-colored oval, with the real
+     button-colored oval inset from the bottom so a sliver of shadow shows below it. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/burk_hangup_red_shadow" />
+        </shape>
+    </item>
+    <item android:bottom="5dp">
+        <shape android:shape="oval">
+            <solid android:color="@color/burk_hangup_red" />
+        </shape>
+    </item>
+</layer-list>

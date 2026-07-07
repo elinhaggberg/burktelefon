@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/burk_background"
+    android:fitsSystemWindows="true">
+
+    <ImageView
+        android:id="@+id/burk_star_1"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="56dp"
+        android:src="@drawable/ic_burk_star"
+        android:importantForAccessibility="no"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/burk_star_2"
+        android:layout_width="11dp"
+        android:layout_height="11dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="120dp"
+        android:src="@drawable/ic_burk_star"
+        android:tint="@color/burk_ink"
+        android:importantForAccessibility="no"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/burk_star_3"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="200dp"
+        android:src="@drawable/ic_burk_star"
+        android:importantForAccessibility="no"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/burk_moon"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginTop="150dp"
+        android:src="@drawable/ic_burk_moon"
+        android:importantForAccessibility="no"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/burk_sleep_chip"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/burk_zzz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="bottom">
+
+            <TextView
+                android:id="@+id/burk_z1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:text="z"
+                android:textSize="14sp"
+                android:textColor="@color/burk_blue"
+                style="@style/Burk.Display" />
+
+            <TextView
+                android:id="@+id/burk_z2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:text="z"
+                android:textSize="20sp"
+                android:textColor="@color/burk_blue"
+                style="@style/Burk.Display" />
+
+            <TextView
+                android:id="@+id/burk_z3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="z"
+                android:textSize="27sp"
+                android:textColor="@color/burk_blue"
+                style="@style/Burk.Display" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/burk_sleeping_can"
+            android:layout_width="74dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_burk_can_sleep"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/burk_sleep_title"
+            android:textSize="26sp"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.15"
+            style="@style/Burk.Display" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/burk_sleep_chip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="34dp"
+        android:background="@drawable/bg_burk_offline_chip"
+        android:textSize="15sp"
+        android:textColor="@color/burk_blue_dark"
+        style="@style/Burk.Body.SemiBold"
+        tools:text="Öppnar igen kl. 09:00"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

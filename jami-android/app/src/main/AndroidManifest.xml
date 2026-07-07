@@ -262,6 +262,58 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             android:exported="false"
             android:foregroundServiceType="dataSync" />
 
+        <!-- ================= Burktelefonen kiosk launcher ================= -->
+        <!-- Disabled by default: installing this fork changes nothing about the
+             device until a parent opts in via the settings dialog, which flips
+             the activity-alias below on/off (see BurkLauncher.kt). -->
+        <activity
+            android:name=".burktelefon.BurkHomeActivity"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Burk" />
+
+        <activity-alias
+            android:name=".burktelefon.BurkLauncherAlias"
+            android:targetActivity=".burktelefon.BurkHomeActivity"
+            android:exported="true"
+            android:enabled="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity
+            android:name=".burktelefon.BurkCallActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:showOnLockScreen="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Burk" />
+
+        <activity
+            android:name=".burktelefon.BurkIncomingCallActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:showOnLockScreen="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Burk" />
+
+        <activity
+            android:name=".burktelefon.BurkSleepActivity"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Burk" />
+        <!-- =============== end Burktelefonen kiosk launcher =============== -->
+
         <activity
             android:name=".client.CallActivity"
             android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize"

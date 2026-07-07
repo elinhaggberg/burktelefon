@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Open tin-can illustration for the incoming-call screen. Shaken via rotation animation
+     from code (BurkAnim.shake), not baked into the drawable. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="92dp"
+    android:height="150dp"
+    android:viewportWidth="100"
+    android:viewportHeight="176">
+    <path
+        android:pathData="M20 26 V150 a30 8 0 0 0 60 0 V26"
+        android:strokeColor="#2A2621"
+        android:strokeWidth="4"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M20,26 a30 8 0 0 0 60 0 a30 8 0 0 0 -60 0 Z"
+        android:strokeColor="#2A2621"
+        android:strokeWidth="4"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M20 50 a30 8 0 0 0 60 0"
+        android:strokeColor="#2A2621"
+        android:strokeWidth="4"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M20 72 a30 8 0 0 0 60 0"
+        android:strokeColor="#2A2621"
+        android:strokeWidth="4"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M20 94 a30 8 0 0 0 60 0"
+        android:strokeColor="#2A2621"
+        android:strokeWidth="4"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M20 116 a30 8 0 0 0 60 0"
+        android:strokeColor="#2A2621"
+        android:strokeWidth="4"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M20 138 a30 8 0 0 0 60 0"
+        android:strokeColor="#2A2621"
+        android:strokeWidth="4"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round" />
+</vector>

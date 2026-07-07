@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+Copyright (C) 2004-2026 Savoir-faire Linux Inc.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<resources>
+    <!-- Kiosk launcher theme: off-white base, single blue accent, no action bar,
+         light status/nav bar icons since the background is light. -->
+    <style name="AppTheme.Burk" parent="AppThemeBase.Light">
+        <item name="colorPrimary">@color/burk_blue</item>
+        <item name="colorPrimaryDark">@color/burk_blue_dark</item>
+        <item name="colorSecondary">@color/burk_blue</item>
+        <item name="android:windowBackground">@color/burk_background</item>
+        <item name="android:colorBackground">@color/burk_background</item>
+        <item name="android:statusBarColor">@color/burk_background</item>
+        <item name="android:navigationBarColor">@color/burk_background</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:textColor">@color/burk_ink</item>
+        <item name="android:fontFamily">@font/fredoka_variable</item>
+    </style>
+
+    <!-- Display font for headings/buttons (Yeseva One, matches the design reference 1:1). -->
+    <style name="Burk.Display">
+        <item name="android:fontFamily">@font/yeseva_one</item>
+        <item name="android:textColor">@color/burk_ink</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <!-- Body/label font (Bitter). -->
+    <style name="Burk.Body">
+        <item name="android:fontFamily">@font/bitter_variable</item>
+        <item name="android:textColor">@color/burk_ink</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Burk.Body.SemiBold">
+        <item name="android:fontFamily">@font/bitter_variable</item>
+        <item name="android:fontVariationSettings">'wght' 600</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+</resources>
