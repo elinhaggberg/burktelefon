@@ -60,6 +60,7 @@ class BurkHomeActivity : AppCompatActivity() {
         prefs = BurkPrefs(this)
         binding = ActivityBurkHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        BurkInsets.applySystemBarPadding(binding.root)
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {

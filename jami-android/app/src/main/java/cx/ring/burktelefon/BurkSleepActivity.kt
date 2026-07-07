@@ -56,6 +56,7 @@ class BurkSleepActivity : AppCompatActivity() {
         prefs = BurkPrefs(this)
         binding = ActivityBurkSleepBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        BurkInsets.applySystemBarPadding(binding.root)
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() { /* no interaction possible while asleep */ }

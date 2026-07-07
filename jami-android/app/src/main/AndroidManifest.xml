@@ -297,6 +297,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             android:theme="@style/AppTheme.Burk" />
 
         <activity
+            android:name=".burktelefon.BurkConnectedCallActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:showOnLockScreen="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Burk" />
+
+        <activity
             android:name=".burktelefon.BurkIncomingCallActivity"
             android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize"
             android:exported="false"

@@ -41,8 +41,9 @@ import javax.inject.Named
  * that *someone* is calling. There is no decline button, only answer-or-timeout,
  * so the child never has to make a "reject a person" decision.
  *
- * On answer, hands off to [BurkCallActivity] in ATTACH mode, which is where the
- * caller's identity is finally revealed — "you see who it is once you answer".
+ * On answer, hands off to [BurkConnectedCallActivity], which stays just as
+ * blind — the screen never reveals identity, on this call or any other;
+ * finding out who it is happens by talking, not by looking at the phone.
  */
 @AndroidEntryPoint
 class BurkIncomingCallActivity : AppCompatActivity() {
@@ -70,6 +71,7 @@ class BurkIncomingCallActivity : AppCompatActivity() {
         }
         binding = ActivityBurkIncomingCallBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        BurkInsets.applySystemBarPadding(binding.root)
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() { /* no-op: answer or let it time out */ }
@@ -125,7 +127,7 @@ class BurkIncomingCallActivity : AppCompatActivity() {
         answered = true
         timeoutTimer?.cancel()
         callService.accept(accountId, callId, false)
-        startActivity(BurkCallActivity.attachIntent(this, callId))
+        startActivity(BurkConnectedCallActivity.intent(this, callId))
         finish()
     }
 

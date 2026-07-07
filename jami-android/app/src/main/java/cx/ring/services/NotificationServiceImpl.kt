@@ -174,6 +174,15 @@ class NotificationServiceImpl(
         }
         return getProfileSingle(accountId, peer)
             .flatMapMaybe { contact ->
+                // Known gap: this notification is also used to resume an
+                // already-connected call (e.g. after backgrounding the app).
+                // BurkCallActivity is correct for the child's own outgoing
+                // calls (never blind), but if a *previously-blind, answered*
+                // incoming call were resumed this way, it would incorrectly
+                // show the contact's identity — the Conference alone doesn't
+                // record how the call started. Not hit by the direct
+                // answer-from-Inkommande flow (that goes straight to
+                // BurkConnectedCallActivity), only by this rarer resume path.
                 val callClass = if (burkKioskMode) BurkCallActivity::class.java
                     else if (DeviceUtils.isTv(mContext)) TVCallActivity::class.java else CallActivity::class.java
                 val viewIntent = PendingIntent.getActivity(mContext, random.nextInt(), Intent(Intent.ACTION_VIEW)

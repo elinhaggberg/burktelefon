@@ -35,6 +35,10 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     <string name="burk_answer">Svara</string>
     <string name="burk_cd_answer">Svara</string>
 
+    <!-- Connected (after answering a blind incoming call): still no name/photo —
+         revealing identity by voice during the call is the point, not the screen. -->
+    <string name="burk_connected_title">Börja prata!</string>
+
     <!-- Sleep mode -->
     <string name="burk_sleep_title">Burktelefonen\nsover</string>
     <string name="burk_sleep_opens_at">Öppnar igen kl. %1$s</string>

@@ -42,10 +42,14 @@ import javax.inject.Inject
 import javax.inject.Named
 
 /**
- * "Ring upp": places (or attaches to) a single 1:1 audio call and shows the
- * recipient's real photo/name for its whole lifetime — unlike the incoming
- * screen, this one is never blind, because the child already chose who to call
- * (or, in the attach case, already answered and so has earned the reveal).
+ * "Ring upp": places a single 1:1 audio call the child initiated, and shows
+ * the recipient's real photo/name for its whole lifetime — this one is never
+ * blind, because the child already chose who to call before dialing.
+ *
+ * A call that arrived *incoming* and got answered never comes through here —
+ * that flow hands off to [BurkConnectedCallActivity] instead, which shows no
+ * identity at all, so the blind principle holds regardless of which screen
+ * a given call is on.
  *
  * Deliberately does *not* implement net.jami.call.CallView/CallPresenter: that
  * contract is built for multi-party video conferencing, screen share, PIP, and
@@ -53,12 +57,11 @@ import javax.inject.Named
  * CallService/ContactService directly instead of adapting 45 mostly-irrelevant
  * methods.
  *
- * Also doubles as the "resume an in-progress call" screen: it understands a
- * bare [Intent.ACTION_VIEW] + [NotificationService.KEY_CALL_ID] intent (call
- * IDs are globally unique, so no account ID is needed for that), which is
- * exactly the shape of NotificationServiceImpl's existing call-notification
- * content/full-screen intent. That lets kiosk mode reuse the stock call
- * notification plumbing for calls already in progress, unchanged.
+ * Also doubles as the "resume an in-progress outgoing call" screen: it
+ * understands a bare [Intent.ACTION_VIEW] + [NotificationService.KEY_CALL_ID]
+ * intent (call IDs are globally unique, so no account ID is needed for that),
+ * matching NotificationServiceImpl's existing call-notification content/
+ * full-screen intent for non-incoming conference states.
  */
 @AndroidEntryPoint
 class BurkCallActivity : AppCompatActivity() {
@@ -86,6 +89,7 @@ class BurkCallActivity : AppCompatActivity() {
         }
         binding = ActivityBurkOutgoingCallBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        BurkInsets.applySystemBarPadding(binding.root)
 
         if (BurkPrefs(this).isKioskModeEnabled) {
             onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
@@ -218,11 +222,5 @@ class BurkCallActivity : AppCompatActivity() {
             putExtra(EXTRA_CONTACT_URI, contactUri)
             putExtra(EXTRA_CONTACT_NAME, contactName)
         }
-
-        /** Attach to an already-placed or already-answered call, e.g. right after answering incoming. */
-        fun attachIntent(context: Context, callId: String) =
-            Intent(context, BurkCallActivity::class.java).apply {
-                putExtra(NotificationService.KEY_CALL_ID, callId)
-            }
     }
 }

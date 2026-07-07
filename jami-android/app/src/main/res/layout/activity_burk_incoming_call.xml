@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/burk_background"
-    android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:paddingHorizontal="24dp"
@@ -63,7 +62,7 @@
     <LinearLayout
         android:id="@+id/burk_answer_button"
         android:layout_width="match_parent"
-        android:layout_height="96dp"
+        android:layout_height="84dp"
         android:background="@drawable/bg_burk_button_answer"
         android:contentDescription="@string/burk_cd_answer"
         android:orientation="horizontal"
@@ -73,9 +72,9 @@
         android:focusable="true">
 
         <ImageView
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginEnd="14dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="12dp"
             android:src="@drawable/ic_burk_handset"
             android:importantForAccessibility="no" />
 
@@ -83,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/burk_answer"
-            android:textSize="32sp"
+            android:textSize="28sp"
             android:textColor="@color/white"
             style="@style/Burk.Display" />
     </LinearLayout>

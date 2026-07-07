@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Shown once an incoming (blind) call is answered. Deliberately generic:
+  no contact name or photo anywhere here, on purpose — the whole point of
+  the blind-call concept is that identity is discovered by talking, not
+  by looking at a screen. Two connected cans + a taut string stands in for
+  "you're on a call now" without giving anything away.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/burk_background"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:paddingHorizontal="24dp"
+    android:paddingTop="34dp"
+    android:paddingBottom="30dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="72dp"
+                android:layout_weight="1"
+                android:scaleType="fitEnd"
+                android:rotation="14"
+                android:src="@drawable/ic_burk_can_header"
+                android:importantForAccessibility="no" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:layout_weight="2"
+                android:layout_marginHorizontal="10dp"
+                android:background="@color/burk_ink" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="72dp"
+                android:layout_weight="1"
+                android:scaleType="fitStart"
+                android:scaleX="-1"
+                android:rotation="-14"
+                android:src="@drawable/ic_burk_can_header"
+                android:importantForAccessibility="no" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/burk_connected_title"
+            android:textSize="34sp"
+            style="@style/Burk.Display" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <FrameLayout
+            android:id="@+id/burk_hangup_button"
+            android:layout_width="88dp"
+            android:layout_height="94dp"
+            android:background="@drawable/bg_burk_button_hangup"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/burk_cd_hangup">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="6dp"
+                android:rotation="133"
+                android:src="@drawable/ic_burk_handset"
+                android:importantForAccessibility="no" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:text="@string/burk_hangup"
+            android:textSize="17sp"
+            android:textColor="@color/burk_ink_muted"
+            style="@style/Burk.Body.SemiBold" />
+    </LinearLayout>
+
+</LinearLayout>

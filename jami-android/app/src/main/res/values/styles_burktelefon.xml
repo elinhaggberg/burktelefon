@@ -52,9 +52,14 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         <item name="android:includeFontPadding">false</item>
     </style>
 
+    <!-- android:textStyle="bold" is the important part here: support for the
+         variable font's weight axis (fontVariationSettings) is inconsistent
+         across real devices, so relying on it alone left this text reading
+         as too thin/light despite the 600 weight setting. Forcing bold
+         guarantees a visibly heavier weight on every device. -->
     <style name="Burk.Body.SemiBold" parent="Burk.Body">
         <item name="android:fontFamily">@font/bitter_variable</item>
-        <item name="android:fontVariationSettings">\'wght\' 600</item>
-        <item name="android:textStyle">normal</item>
+        <item name="android:fontVariationSettings">\'wght\' 700</item>
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>
