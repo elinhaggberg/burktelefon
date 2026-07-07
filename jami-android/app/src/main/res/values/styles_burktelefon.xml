@@ -32,21 +32,24 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         <item name="android:fontFamily">@font/fredoka_variable</item>
     </style>
 
-    <!-- Display font for headings/buttons (Yeseva One, matches the design reference 1:1). -->
-    <style name="Burk.Display">
+    <!-- Display font for headings/buttons (Yeseva One, matches the design reference 1:1).
+         parent="" is required here: without it, aapt2 tries to resolve an
+         implicit parent named "Burk" (stripping the last dot segment), which
+         doesn't exist and fails the build. -->
+    <style name="Burk.Display" parent="">
         <item name="android:fontFamily">@font/yeseva_one</item>
         <item name="android:textColor">@color/burk_ink</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
     <!-- Body/label font (Bitter). -->
-    <style name="Burk.Body">
+    <style name="Burk.Body" parent="">
         <item name="android:fontFamily">@font/bitter_variable</item>
         <item name="android:textColor">@color/burk_ink</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="Burk.Body.SemiBold">
+    <style name="Burk.Body.SemiBold" parent="Burk.Body">
         <item name="android:fontFamily">@font/bitter_variable</item>
         <item name="android:fontVariationSettings">\'wght\' 600</item>
         <item name="android:textStyle">normal</item>
