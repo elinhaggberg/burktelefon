@@ -31,6 +31,7 @@ import cx.ring.views.AvatarFactory
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import net.jami.model.Call.CallStatus
 import net.jami.model.Conference
 import net.jami.model.Contact
 import net.jami.model.Uri
@@ -117,7 +118,7 @@ class BurkCallActivity : AppCompatActivity() {
                 .placeCallIfAllowed(accountId, conversationUriStr?.let { Uri.fromString(it) }, contactUri, false)
                 .flatMapObservable { call -> callService.getConfUpdates(call) }
                 .observeOn(uiScheduler)
-                .subscribe({ conf -> onConferenceUpdate(conf) }, { finish() }))
+                .subscribe({ conf -> onConferenceUpdate(conf) }, { showCallFailed() }))
         } else {
             finish()
         }
@@ -126,7 +127,7 @@ class BurkCallActivity : AppCompatActivity() {
     private fun attachToCall(callId: String) {
         disposables.add(callService.getConfUpdates(callId)
             .observeOn(uiScheduler)
-            .subscribe({ conf -> onConferenceUpdate(conf) }, { finish() }))
+            .subscribe({ conf -> onConferenceUpdate(conf) }, { showCallFailed() }))
     }
 
     private fun onConferenceUpdate(conf: Conference) {
@@ -139,10 +140,16 @@ class BurkCallActivity : AppCompatActivity() {
         }
         val state = conf.state
         when {
+            state == CallStatus.FAILURE || state == CallStatus.BUSY -> showCallFailed()
             state == null || state.isOver -> finish()
             state.isRinging -> showRinging()
             else -> showConnected()
         }
+    }
+
+    private fun showCallFailed() {
+        startActivity(BurkCallFailedActivity.intent(this))
+        finish()
     }
 
     private fun loadContactInfoByUri(accountId: String, contactUri: Uri) {

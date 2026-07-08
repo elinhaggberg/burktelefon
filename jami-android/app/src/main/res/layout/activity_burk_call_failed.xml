@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Shown when a call ends in a technical failure (Jami's underlying P2P
+  connection failing to establish, or a busy line) rather than a plain
+  unanswered call. An unanswered call just silently returns to Hemskärm,
+  like a landline that stops ringing — this screen is only for "something's
+  actually wrong," since a kid has no way to diagnose a network problem and
+  needs a nudge to get an adult involved. The snapped string (gap between
+  the two cans, instead of the taut line on the connected screen) is the
+  visual cue.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/burk_background"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:paddingHorizontal="24dp"
+    android:paddingTop="34dp"
+    android:paddingBottom="30dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="72dp"
+                android:layout_weight="1"
+                android:scaleType="fitEnd"
+                android:rotation="14"
+                android:src="@drawable/ic_burk_can_header"
+                android:importantForAccessibility="no" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:background="@color/burk_ink_faint" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="10dp"
+                android:background="@color/burk_ink_faint" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="72dp"
+                android:layout_weight="1"
+                android:scaleType="fitStart"
+                android:scaleX="-1"
+                android:rotation="-14"
+                android:src="@drawable/ic_burk_can_header"
+                android:importantForAccessibility="no" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/burk_call_failed_title"
+            android:textSize="29sp"
+            android:gravity="center"
+            style="@style/Burk.Display" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="@string/burk_call_failed_subtitle"
+            android:textSize="19sp"
+            android:gravity="center"
+            android:textColor="@color/burk_ink_muted"
+            style="@style/Burk.Body.SemiBold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/burk_call_failed_back_button"
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:background="@drawable/bg_burk_button_primary"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingBottom="6dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/burk_call_failed_back"
+            android:textSize="26sp"
+            android:textColor="@color/white"
+            style="@style/Burk.Display" />
+    </LinearLayout>
+
+</LinearLayout>

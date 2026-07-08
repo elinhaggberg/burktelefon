@@ -28,6 +28,7 @@ import cx.ring.databinding.ActivityBurkConnectedCallBinding
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import net.jami.model.Call.CallStatus
 import net.jami.model.Conference
 import net.jami.services.CallService
 import net.jami.services.NotificationService
@@ -75,13 +76,21 @@ class BurkConnectedCallActivity : AppCompatActivity() {
         if (callId == null) { finish(); return }
         disposables.add(callService.getConfUpdates(callId)
             .observeOn(uiScheduler)
-            .subscribe({ conf -> onConferenceUpdate(conf) }, { finish() }))
+            .subscribe({ conf -> onConferenceUpdate(conf) }, { showCallFailed() }))
     }
 
     private fun onConferenceUpdate(conf: Conference) {
         conference = conf
         val state = conf.state
-        if (state == null || state.isOver) finish()
+        when {
+            state == CallStatus.FAILURE || state == CallStatus.BUSY -> showCallFailed()
+            state == null || state.isOver -> finish()
+        }
+    }
+
+    private fun showCallFailed() {
+        startActivity(BurkCallFailedActivity.intent(this))
+        finish()
     }
 
     private fun hangUp() {
