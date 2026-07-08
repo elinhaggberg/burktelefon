@@ -17,6 +17,7 @@
 package cx.ring.burktelefon
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import cx.ring.R
@@ -26,20 +27,30 @@ import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.Disposable
 import net.jami.smartlist.ConversationItemViewModel
 
-/** Real Jami contact photos + names, imported from the account's conversation
- *  list — with an optional local nickname override (e.g. "Mamma" instead of
- *  the contact's real Jami name), set via long-press. */
+/**
+ * Real Jami contact photos + names, imported from the account's conversation
+ * list — with an optional local nickname override (e.g. "Mamma" instead of
+ * the contact's real Jami name).
+ *
+ * Renaming is a deliberate two-step gesture: long-pressing a contact "arms"
+ * a small pencil badge on it (only one contact armed at a time), and a
+ * second, separate tap on that badge opens the rename dialog. A single
+ * accidental long-press — an easy thing for a kid to do without meaning
+ * to — can't open editing UI on its own.
+ */
 class BurkContactAdapter(
     private val uiScheduler: Scheduler,
     private val nicknames: BurkNicknames,
     private val onContactClicked: (ConversationItemViewModel) -> Unit,
-    private val onContactLongPressed: (ConversationItemViewModel) -> Unit
+    private val onRenameRequested: (ConversationItemViewModel) -> Unit
 ) : RecyclerView.Adapter<BurkContactAdapter.ViewHolder>() {
 
     private var items: List<ConversationItemViewModel> = emptyList()
+    private var armedPosition: Int = RecyclerView.NO_POSITION
 
     fun submitList(newItems: List<ConversationItemViewModel>) {
         items = newItems
+        armedPosition = RecyclerView.NO_POSITION
         notifyDataSetChanged()
     }
 
@@ -52,7 +63,34 @@ class BurkContactAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(items[position], uiScheduler, nicknames, onContactClicked, onContactLongPressed)
+        val vm = items[position]
+        holder.bind(
+            vm, uiScheduler, nicknames,
+            isArmed = position == armedPosition,
+            onClick = {
+                if (position == armedPosition) disarm() else onContactClicked(vm)
+            },
+            onLongClick = { arm(position) },
+            onEditBadgeClick = {
+                disarm()
+                onRenameRequested(vm)
+            }
+        )
+    }
+
+    private fun arm(position: Int) {
+        if (position == armedPosition) return
+        val previous = armedPosition
+        armedPosition = position
+        if (previous != RecyclerView.NO_POSITION) notifyItemChanged(previous)
+        notifyItemChanged(position)
+    }
+
+    private fun disarm() {
+        if (armedPosition == RecyclerView.NO_POSITION) return
+        val previous = armedPosition
+        armedPosition = RecyclerView.NO_POSITION
+        notifyItemChanged(previous)
     }
 
     override fun onViewRecycled(holder: ViewHolder) {
@@ -69,15 +107,19 @@ class BurkContactAdapter(
             vm: ConversationItemViewModel,
             uiScheduler: Scheduler,
             nicknames: BurkNicknames,
-            onContactClicked: (ConversationItemViewModel) -> Unit,
-            onContactLongPressed: (ConversationItemViewModel) -> Unit
+            isArmed: Boolean,
+            onClick: () -> Unit,
+            onLongClick: () -> Unit,
+            onEditBadgeClick: () -> Unit
         ) {
             val contactUri = vm.getContact()?.contact?.uri?.rawUriString
             val displayName = contactUri?.let { nicknames.resolve(it, vm.title) } ?: vm.title
             binding.burkContactName.text = displayName
             binding.root.contentDescription = binding.root.context.getString(R.string.burk_cd_call_contact, displayName)
-            binding.root.setOnClickListener { onContactClicked(vm) }
-            binding.root.setOnLongClickListener { onContactLongPressed(vm); true }
+            binding.root.setOnClickListener { onClick() }
+            binding.root.setOnLongClickListener { onLongClick(); true }
+            binding.burkEditBadge.visibility = if (isArmed) View.VISIBLE else View.GONE
+            binding.burkEditBadge.setOnClickListener { onEditBadgeClick() }
             avatarDisposable?.dispose()
             avatarDisposable = AvatarFactory.getAvatar(binding.root.context, vm)
                 .observeOn(uiScheduler)

@@ -26,6 +26,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/bg_burk_circle_stroke" />
+
+        <!-- Armed by long-press, tapped to actually open the rename dialog —
+             a two-step gesture so an accidental long-press (easy for a kid to
+             do without meaning to) can't open editing UI on its own. -->
+        <ImageView
+            android:id="@+id/burk_edit_badge"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_gravity="bottom|end"
+            android:src="@drawable/baseline_edit_rounded_24"
+            android:visibility="gone"
+            android:contentDescription="@string/burk_rename_title" />
     </FrameLayout>
 
     <TextView

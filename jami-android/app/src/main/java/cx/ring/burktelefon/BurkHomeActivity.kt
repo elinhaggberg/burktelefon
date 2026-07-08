@@ -81,7 +81,7 @@ class BurkHomeActivity : AppCompatActivity() {
         adapter = BurkContactAdapter(
             uiScheduler, nicknames,
             onContactClicked = { vm -> callContact(vm) },
-            onContactLongPressed = { vm -> showRenameDialog(vm) }
+            onRenameRequested = { vm -> showRenameDialog(vm) }
         )
         binding.burkContactGrid.layoutManager = GridLayoutManager(this, 2)
         binding.burkContactGrid.adapter = adapter
