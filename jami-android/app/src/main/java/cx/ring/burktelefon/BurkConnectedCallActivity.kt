@@ -20,6 +20,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.SystemClock
 import android.view.WindowManager
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
@@ -51,6 +52,7 @@ class BurkConnectedCallActivity : AppCompatActivity() {
     private val disposables = CompositeDisposable()
     private lateinit var binding: ActivityBurkConnectedCallBinding
     private var conference: Conference? = null
+    private val screenStartElapsedMs = SystemClock.elapsedRealtime()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,7 +86,11 @@ class BurkConnectedCallActivity : AppCompatActivity() {
         val state = conf.state
         when {
             state == CallStatus.FAILURE || state == CallStatus.BUSY -> showCallFailed()
-            state == null || state.isOver -> finish()
+            state == null || state.isOver -> {
+                val failedQuickly = SystemClock.elapsedRealtime() - screenStartElapsedMs <
+                    BurkCallFailedActivity.QUICK_FAILURE_THRESHOLD_MS
+                if (failedQuickly) showCallFailed() else finish()
+            }
         }
     }
 

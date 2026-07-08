@@ -52,6 +52,18 @@ class BurkCallFailedActivity : AppCompatActivity() {
     }
 
     companion object {
+        /**
+         * A real technical failure (e.g. the same-network NAT-hairpin issue
+         * seen in testing) tends to end the call within a couple of seconds,
+         * without ever explicitly signaling [net.jami.model.Call.CallStatus.FAILURE]
+         * or [net.jami.model.Call.CallStatus.BUSY] — it just silently goes
+         * HUNGUP/OVER very quickly. A genuinely unanswered call rings for much
+         * longer (up to the callee's own answer timeout). So a call/connect
+         * attempt that ends this fast, having never reached CURRENT, is treated
+         * as a failure worth surfacing rather than a quiet "nobody answered."
+         */
+        const val QUICK_FAILURE_THRESHOLD_MS = 8_000L
+
         fun intent(context: Context) = Intent(context, BurkCallFailedActivity::class.java)
     }
 }

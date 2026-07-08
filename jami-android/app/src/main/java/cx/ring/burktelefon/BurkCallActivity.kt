@@ -21,6 +21,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.SystemClock
 import android.view.View
 import android.view.WindowManager
 import androidx.activity.OnBackPressedCallback
@@ -76,6 +77,8 @@ class BurkCallActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBurkOutgoingCallBinding
     private var conference: Conference? = null
     private var contactInfoLoaded = false
+    private var hasConnected = false
+    private val callStartElapsedMs = SystemClock.elapsedRealtime()
     private var ring1: Animator? = null
     private var ring2: Animator? = null
     private var dotAnimators: List<Animator>? = null
@@ -141,9 +144,16 @@ class BurkCallActivity : AppCompatActivity() {
         val state = conf.state
         when {
             state == CallStatus.FAILURE || state == CallStatus.BUSY -> showCallFailed()
-            state == null || state.isOver -> finish()
+            state == null || state.isOver -> {
+                val failedQuickly = !hasConnected &&
+                    SystemClock.elapsedRealtime() - callStartElapsedMs < BurkCallFailedActivity.QUICK_FAILURE_THRESHOLD_MS
+                if (failedQuickly) showCallFailed() else finish()
+            }
             state.isRinging -> showRinging()
-            else -> showConnected()
+            else -> {
+                hasConnected = true
+                showConnected()
+            }
         }
     }
 
