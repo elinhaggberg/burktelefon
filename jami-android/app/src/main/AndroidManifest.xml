@@ -273,6 +273,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Burk" />
 
+        <!-- Reached from the real Jami app's own Settings screen, not from
+             inside the kiosk UI — uses the app's normal theme, not AppTheme.Burk. -->
+        <activity
+            android:name=".burktelefon.BurkParentSettingsActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.Navigation" />
+
         <activity-alias
             android:name=".burktelefon.BurkLauncherAlias"
             android:targetActivity=".burktelefon.BurkHomeActivity"

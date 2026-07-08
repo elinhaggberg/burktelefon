@@ -48,8 +48,30 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     <string name="burk_settings_offline_today">Offline idag</string>
     <string name="burk_settings_offline_today_summary">Burktelefonen svarar inte förrän imorgon när fönstret öppnar igen.</string>
     <string name="burk_settings_kiosk_mode">Använd som hemskärm</string>
-    <string name="burk_settings_kiosk_mode_summary">Låser enheten till Burktelefonen istället för Androids vanliga hemskärm.</string>
     <string name="burk_settings_leave_kiosk">Lämna kiosk-läge</string>
     <string name="burk_settings_leave_kiosk_summary">Öppnar den vanliga Jami-appen för kontakthantering.</string>
     <string name="burk_settings_close">Stäng</string>
+
+    <!-- Parent-side settings (reached from the regular Jami app, not from inside the kiosk) -->
+    <string name="burk_parent_settings_title">Burktelefonen</string>
+    <string name="burk_parent_settings_menu_entry">Burktelefonen</string>
+    <string name="burk_parent_settings_menu_entry_summary">Barnläge och hemskärm</string>
+    <string name="burk_parent_kiosk_mode_summary">Låser enheten till Burktelefonen istället för Androids vanliga hemskärm. Efter att du slår på detta, gå till Inställningar &gt; Standardappar &gt; Hemskärm och välj Burktelefonen.</string>
+    <string name="burk_parent_pin_title">Låskod för att lämna kiosk-läge</string>
+    <string name="burk_parent_pin_not_set">Ingen låskod inställd — vem som helst kan lämna kiosk-läget just nu.</string>
+    <string name="burk_parent_pin_set">Låskod är inställd.</string>
+    <string name="burk_parent_pin_set_button">Ange låskod</string>
+    <string name="burk_parent_pin_change_button">Byt låskod</string>
+    <string name="burk_parent_pin_remove_button">Ta bort låskod</string>
+    <string name="burk_parent_pin_remove_confirm">Ta bort låskoden? Vem som helst kommer då kunna lämna kiosk-läget utan kod.</string>
+    <string name="burk_parent_open_burktelefon">Öppna Burktelefonen</string>
+    <string name="burk_parent_open_burktelefon_summary">Förhandsgranska barnens vy direkt.</string>
+
+    <!-- PIN entry dialog -->
+    <string name="burk_pin_enter_new">Ange en 4-siffrig kod</string>
+    <string name="burk_pin_confirm_new">Ange koden igen</string>
+    <string name="burk_pin_enter_to_leave">Ange låskoden för att lämna kiosk-läget</string>
+    <string name="burk_pin_mismatch">Koderna stämde inte överens, försök igen.</string>
+    <string name="burk_pin_wrong">Fel kod.</string>
+    <string name="burk_pin_too_short">Koden måste vara 4 siffror.</string>
 </resources>

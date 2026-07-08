@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/burk_pin_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        tools:text="Ange låskod" />
+
+    <EditText
+        android:id="@+id/burk_pin_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:inputType="numberPassword"
+        android:maxLength="4"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:letterSpacing="0.5"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/burk_pin_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorError"
+        android:textSize="13sp"
+        android:visibility="gone"
+        tools:text="Fel kod" />
+
+</LinearLayout>

@@ -178,6 +178,9 @@ class SettingsFragment :
             settingsLogs.setOnClickListener { v: View ->
                 startActivity(Intent(v.context, LogsActivity::class.java))
             }
+            burkParentSettingsRow.setOnClickListener { v: View ->
+                startActivity(cx.ring.burktelefon.BurkParentSettingsActivity.intent(v.context))
+            }
             connectionMonitor.setOnClickListener { v: View ->
                 val content = ConnectionMonitorFragment()
                 childFragmentManager

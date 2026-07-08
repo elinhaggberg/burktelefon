@@ -974,6 +974,47 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/burk_parent_settings_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/padding_large">
+
+                    <ImageView
+                        android:id="@+id/burk_parent_settings_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/burk_parent_settings_menu_entry"
+                        android:src="@drawable/baseline_devices_24"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="16dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/burk_parent_settings_image"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/ListPrimary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:lines="1"
+                            android:text="@string/burk_parent_settings_menu_entry" />
+
+                        <TextView
+                            style="@style/ListSecondary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/burk_parent_settings_menu_entry_summary" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:id="@+id/connection_monitor"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

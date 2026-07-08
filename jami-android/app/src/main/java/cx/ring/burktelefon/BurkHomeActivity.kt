@@ -21,6 +21,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -40,8 +41,10 @@ import javax.inject.Named
 /**
  * "Hemskärm": the kiosk launcher root. A grid of real Jami contacts (photo +
  * name imported straight from the account); tapping one places an outgoing
- * call. The three-dot button opens settings (offline-today, kiosk toggle,
- * escape hatch back to the real Jami app for contact administration).
+ * call. The three-dot button opens settings: offline-today, and a PIN-gated
+ * escape hatch back to the real Jami app for contact administration. Kiosk
+ * mode itself is only turned on/off from BurkParentSettingsActivity, reached
+ * from the real Jami app — not from in here.
  */
 @AndroidEntryPoint
 class BurkHomeActivity : AppCompatActivity() {
@@ -114,7 +117,6 @@ class BurkHomeActivity : AppCompatActivity() {
     private fun showSettingsDialog() {
         val dialogBinding = DialogBurkSettingsBinding.inflate(layoutInflater)
         dialogBinding.burkOfflineSwitch.isChecked = prefs.isOfflineToday()
-        dialogBinding.burkKioskSwitch.isChecked = prefs.isKioskModeEnabled
 
         val dialog = AlertDialog.Builder(this)
             .setView(dialogBinding.root)
@@ -124,16 +126,27 @@ class BurkHomeActivity : AppCompatActivity() {
         dialogBinding.burkOfflineSwitch.setOnCheckedChangeListener { _, checked ->
             prefs.setOfflineToday(checked)
         }
-        dialogBinding.burkKioskSwitch.setOnCheckedChangeListener { _, checked ->
-            prefs.isKioskModeEnabled = checked
-            BurkLauncher.setEnabled(this, checked)
-        }
         dialogBinding.burkLeaveKioskRow.setOnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java))
-            dialog.dismiss()
+            if (!prefs.hasPinSet()) {
+                leaveKioskMode()
+                dialog.dismiss()
+            } else {
+                BurkPinDialogs.promptEnterPin(this, getString(R.string.burk_pin_enter_to_leave)) { pin ->
+                    if (prefs.verifyPin(pin)) {
+                        leaveKioskMode()
+                        dialog.dismiss()
+                    } else {
+                        Toast.makeText(this, R.string.burk_pin_wrong, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
 
         dialog.show()
+    }
+
+    private fun leaveKioskMode() {
+        startActivity(Intent(this, HomeActivity::class.java))
     }
 
     override fun onDestroy() {

@@ -18,6 +18,7 @@ package cx.ring.burktelefon
 
 import android.content.Context
 import android.content.SharedPreferences
+import java.security.MessageDigest
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.concurrent.TimeUnit
@@ -68,6 +69,24 @@ class BurkPrefs(context: Context) {
         get() = prefs.getInt(KEY_WINDOW_END, DEFAULT_WINDOW_END_MINUTES)
         set(value) = prefs.edit().putInt(KEY_WINDOW_END, value).apply()
 
+    /** True once a parent has set an unlock PIN (before that, leaving kiosk mode needs no PIN). */
+    fun hasPinSet(): Boolean = prefs.contains(KEY_PIN_HASH)
+
+    fun setPin(pin: String) {
+        prefs.edit().putString(KEY_PIN_HASH, hashPin(pin)).apply()
+    }
+
+    fun clearPin() {
+        prefs.edit().remove(KEY_PIN_HASH).apply()
+    }
+
+    fun verifyPin(pin: String): Boolean = prefs.getString(KEY_PIN_HASH, null) == hashPin(pin)
+
+    private fun hashPin(pin: String): String {
+        val digest = MessageDigest.getInstance("SHA-256").digest(pin.toByteArray(Charsets.UTF_8))
+        return digest.joinToString("") { "%02x".format(it) }
+    }
+
     private fun todayKey(): String = dateFormat.format(java.util.Date())
 
     companion object {
@@ -77,6 +96,7 @@ class BurkPrefs(context: Context) {
         private const val KEY_KIOSK_MODE = "kiosk_mode_enabled"
         private const val KEY_WINDOW_START = "window_start_minutes"
         private const val KEY_WINDOW_END = "window_end_minutes"
+        private const val KEY_PIN_HASH = "kiosk_exit_pin_hash"
         // TEMPORARY for manual testing: widened to cover the whole day so Sovläge
         // doesn't kick in regardless of what time you're testing at. Revert to
         // 9-19 (or better, add a real settings UI for this) before real use.
