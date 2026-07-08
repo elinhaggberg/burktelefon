@@ -101,6 +101,11 @@ class BurkHomeActivity : AppCompatActivity() {
             finish()
             return
         }
+        if (!BurkConnectivity.hasInternet(this)) {
+            startActivity(BurkNoInternetActivity.intent(this))
+            finish()
+            return
+        }
         // Deliberately NOT using startLockTask()/screen pinning here: Android
         // treats a genuine incoming Telecom call as important enough to
         // interrupt a pinned screen, but only via its own "detach to answer"

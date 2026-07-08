@@ -336,6 +336,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Burk" />
+
+        <activity
+            android:name=".burktelefon.BurkNoInternetActivity"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Burk" />
         <!-- =============== end Burktelefonen kiosk launcher =============== -->
 
         <activity

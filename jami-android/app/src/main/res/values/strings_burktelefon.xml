@@ -50,6 +50,9 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     <string name="burk_call_failed_subtitle">Fråga en vuxen om hjälp</string>
     <string name="burk_call_failed_back">Tillbaka</string>
 
+    <!-- No internet connection -->
+    <string name="burk_no_internet_title">Burktelefonen\nsaknar internet</string>
+
     <!-- Sleep mode -->
     <string name="burk_sleep_title">Burktelefonen\nsover</string>
     <string name="burk_sleep_opens_at">Öppnar igen kl. %1$s</string>
