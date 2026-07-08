@@ -73,6 +73,12 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     <string name="burk_parent_open_burktelefon">Öppna Burktelefonen</string>
     <string name="burk_parent_open_burktelefon_summary">Förhandsgranska barnens vy direkt.</string>
 
+    <string name="burk_parent_window_title">Tillgänglighetsfönster</string>
+    <string name="burk_parent_window_summary">Burktelefonen sover (och svarar inte) utanför den här tiden.</string>
+    <string name="burk_parent_window_opens">Öppnar</string>
+    <string name="burk_parent_window_closes">Stänger</string>
+    <string name="burk_parent_window_invalid">Stängningstiden måste vara efter öppningstiden.</string>
+
     <!-- PIN entry dialog -->
     <string name="burk_pin_enter_new">Ange en 4-siffrig kod</string>
     <string name="burk_pin_confirm_new">Ange koden igen</string>

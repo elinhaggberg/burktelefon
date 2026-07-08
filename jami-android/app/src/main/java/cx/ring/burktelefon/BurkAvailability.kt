@@ -36,7 +36,8 @@ object BurkAvailability {
     /** "09:00"-style label for the window's start, e.g. for the sleep screen. */
     fun windowStartLabel(prefs: BurkPrefs): String = minutesToLabel(prefs.windowStartMinutes)
 
-    private fun minutesToLabel(minutesAfterMidnight: Int): String {
+    /** "09:00"-style label for any minutes-after-midnight value, e.g. for editing the window. */
+    fun minutesToLabel(minutesAfterMidnight: Int): String {
         val h = minutesAfterMidnight / 60
         val m = minutesAfterMidnight % 60
         return String.format("%02d:%02d", h, m)

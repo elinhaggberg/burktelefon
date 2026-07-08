@@ -17,11 +17,13 @@
 package cx.ring.burktelefon
 
 import android.app.AlertDialog
+import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import cx.ring.R
 import cx.ring.databinding.ActivityBurkParentSettingsBinding
@@ -69,7 +71,35 @@ class BurkParentSettingsActivity : AppCompatActivity() {
             startActivity(BurkHomeActivity.intent(this))
         }
 
+        binding.burkParentWindowStartButton.setOnClickListener { pickTime(isStart = true) }
+        binding.burkParentWindowEndButton.setOnClickListener { pickTime(isStart = false) }
+
         refreshPinUi()
+        refreshWindowUi()
+    }
+
+    private fun refreshWindowUi() {
+        binding.burkParentWindowStartButton.text = BurkAvailability.minutesToLabel(prefs.windowStartMinutes)
+        binding.burkParentWindowEndButton.text = BurkAvailability.minutesToLabel(prefs.windowEndMinutes)
+    }
+
+    private fun pickTime(isStart: Boolean) {
+        val currentMinutes = if (isStart) prefs.windowStartMinutes else prefs.windowEndMinutes
+        TimePickerDialog(
+            this,
+            { _, hour, minute ->
+                val newMinutes = hour * 60 + minute
+                val otherMinutes = if (isStart) prefs.windowEndMinutes else prefs.windowStartMinutes
+                val valid = if (isStart) newMinutes < otherMinutes else newMinutes > otherMinutes
+                if (!valid) {
+                    Toast.makeText(this, R.string.burk_parent_window_invalid, Toast.LENGTH_SHORT).show()
+                } else {
+                    if (isStart) prefs.windowStartMinutes = newMinutes else prefs.windowEndMinutes = newMinutes
+                    refreshWindowUi()
+                }
+            },
+            currentMinutes / 60, currentMinutes % 60, true
+        ).show()
     }
 
     private fun refreshPinUi() {
