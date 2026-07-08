@@ -155,7 +155,7 @@ class BurkCallActivity : AppCompatActivity() {
         disposables.add(contactService.observeContact(accountId, contact, false)
             .observeOn(uiScheduler)
             .subscribe { vm ->
-                binding.burkContactName.text = vm.displayName
+                binding.burkContactName.text = BurkNicknames(this).resolve(contact.uri.rawUriString, vm.displayName)
                 disposables.add(AvatarFactory.getAvatar(this, vm, false)
                     .observeOn(uiScheduler)
                     .subscribe { drawable -> binding.burkContactPhoto.setImageDrawable(drawable) })

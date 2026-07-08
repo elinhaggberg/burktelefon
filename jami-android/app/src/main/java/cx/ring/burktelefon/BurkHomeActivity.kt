@@ -29,6 +29,7 @@ import cx.ring.R
 import cx.ring.application.JamiApplication
 import cx.ring.client.HomeActivity
 import cx.ring.databinding.ActivityBurkHomeBinding
+import cx.ring.databinding.DialogBurkRenameContactBinding
 import cx.ring.databinding.DialogBurkSettingsBinding
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.core.Scheduler
@@ -55,12 +56,14 @@ class BurkHomeActivity : AppCompatActivity() {
     private val disposables = CompositeDisposable()
     private lateinit var binding: ActivityBurkHomeBinding
     private lateinit var prefs: BurkPrefs
+    private lateinit var nicknames: BurkNicknames
     private lateinit var adapter: BurkContactAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         JamiApplication.instance?.startDaemon(this)
         prefs = BurkPrefs(this)
+        nicknames = BurkNicknames(this)
         binding = ActivityBurkHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         BurkInsets.applySystemBarPadding(binding.root)
@@ -75,7 +78,11 @@ class BurkHomeActivity : AppCompatActivity() {
             }
         })
 
-        adapter = BurkContactAdapter(uiScheduler) { vm -> callContact(vm) }
+        adapter = BurkContactAdapter(
+            uiScheduler, nicknames,
+            onContactClicked = { vm -> callContact(vm) },
+            onContactLongPressed = { vm -> showRenameDialog(vm) }
+        )
         binding.burkContactGrid.layoutManager = GridLayoutManager(this, 2)
         binding.burkContactGrid.adapter = adapter
 
@@ -109,9 +116,28 @@ class BurkHomeActivity : AppCompatActivity() {
 
     private fun callContact(vm: ConversationItemViewModel) {
         val contact = vm.getContact() ?: return
+        val contactUri = contact.contact.uri.rawUriString
+        val displayName = nicknames.resolve(contactUri, vm.title)
         startActivity(BurkCallActivity.placeCallIntent(
-            this, vm.accountId, vm.uri.rawUriString, contact.contact.uri.rawUriString, vm.title
+            this, vm.accountId, vm.uri.rawUriString, contactUri, displayName
         ))
+    }
+
+    private fun showRenameDialog(vm: ConversationItemViewModel) {
+        val contact = vm.getContact() ?: return
+        val contactUri = contact.contact.uri.rawUriString
+        val dialogBinding = DialogBurkRenameContactBinding.inflate(layoutInflater)
+        dialogBinding.burkRenameInput.setText(nicknames.resolve(contactUri, vm.title))
+
+        AlertDialog.Builder(this)
+            .setTitle(R.string.burk_rename_title)
+            .setView(dialogBinding.root)
+            .setPositiveButton(R.string.burk_rename_save) { _, _ ->
+                nicknames.set(contactUri, dialogBinding.burkRenameInput.text?.toString())
+                adapter.refreshNicknames()
+            }
+            .setNegativeButton(R.string.burk_rename_cancel, null)
+            .show()
     }
 
     private fun showSettingsDialog() {

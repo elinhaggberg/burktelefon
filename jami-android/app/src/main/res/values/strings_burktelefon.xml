@@ -25,6 +25,12 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     <string name="burk_cd_call_contact">Ring till %1$s</string>
     <string name="burk_cd_settings">Inställningar</string>
 
+    <!-- Rename contact (long-press a contact on Hemskärm) -->
+    <string name="burk_rename_title">Ändra namn</string>
+    <string name="burk_rename_hint">Namn på Burktelefonen</string>
+    <string name="burk_rename_save">Spara</string>
+    <string name="burk_rename_cancel">Avbryt</string>
+
     <!-- Outgoing call -->
     <string name="burk_calling">Ringer</string>
     <string name="burk_hangup">Lägg på</string>
