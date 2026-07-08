@@ -21,16 +21,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import cx.ring.R
 import cx.ring.application.JamiApplication
-import cx.ring.client.HomeActivity
 import cx.ring.databinding.ActivityBurkHomeBinding
 import cx.ring.databinding.DialogBurkRenameContactBinding
-import cx.ring.databinding.DialogBurkSettingsBinding
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -86,7 +83,7 @@ class BurkHomeActivity : AppCompatActivity() {
         binding.burkContactGrid.layoutManager = GridLayoutManager(this, 2)
         binding.burkContactGrid.adapter = adapter
 
-        binding.burkSettingsButton.setOnClickListener { showSettingsDialog() }
+        binding.burkSettingsButton.setOnClickListener { BurkSettingsDialog.show(this, prefs) }
 
         disposables.add(conversationFacade.getConversationViewModelList()
             .observeOn(uiScheduler)
@@ -138,41 +135,6 @@ class BurkHomeActivity : AppCompatActivity() {
             }
             .setNegativeButton(R.string.burk_rename_cancel, null)
             .show()
-    }
-
-    private fun showSettingsDialog() {
-        val dialogBinding = DialogBurkSettingsBinding.inflate(layoutInflater)
-        dialogBinding.burkOfflineSwitch.isChecked = prefs.isOfflineToday()
-
-        val dialog = AlertDialog.Builder(this)
-            .setView(dialogBinding.root)
-            .setPositiveButton(R.string.burk_settings_close, null)
-            .create()
-
-        dialogBinding.burkOfflineSwitch.setOnCheckedChangeListener { _, checked ->
-            prefs.setOfflineToday(checked)
-        }
-        dialogBinding.burkLeaveKioskRow.setOnClickListener {
-            if (!prefs.hasPinSet()) {
-                leaveKioskMode()
-                dialog.dismiss()
-            } else {
-                BurkPinDialogs.promptEnterPin(this, getString(R.string.burk_pin_enter_to_leave)) { pin ->
-                    if (prefs.verifyPin(pin)) {
-                        leaveKioskMode()
-                        dialog.dismiss()
-                    } else {
-                        Toast.makeText(this, R.string.burk_pin_wrong, Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-        }
-
-        dialog.show()
-    }
-
-    private fun leaveKioskMode() {
-        startActivity(Intent(this, HomeActivity::class.java))
     }
 
     override fun onDestroy() {

@@ -29,9 +29,12 @@ import cx.ring.databinding.ActivityBurkSleepBinding
 
 /**
  * "Sovläge": shown outside the availability window (or while "offline idag" is
- * set). No interaction is possible — the only thing a child can do here is
- * wait, so this screen polls local time every 30s and hands control back to
- * [BurkHomeActivity] the moment the window opens (or offline-today is over).
+ * set). A child can't do anything here but wait, so this screen polls local
+ * time every 30s and hands control back to [BurkHomeActivity] the moment the
+ * window opens (or offline-today is over). The three-dot settings button is
+ * still available (same PIN-gated leave-kiosk as Hemskärm) — a kiosk screen
+ * must never be able to lock out the person administering the device just
+ * because the can happens to be asleep when they enter kiosk mode.
  */
 class BurkSleepActivity : AppCompatActivity() {
 
@@ -63,6 +66,7 @@ class BurkSleepActivity : AppCompatActivity() {
         })
 
         binding.burkSleepChip.text = getString(R.string.burk_sleep_opens_at, BurkAvailability.windowStartLabel(prefs))
+        binding.burkSettingsButton.setOnClickListener { BurkSettingsDialog.show(this, prefs) }
 
         animators += BurkAnim.twinkle(binding.burkStar1, 3000).also { it.start() }
         animators += BurkAnim.twinkle(binding.burkStar2, 3000, 1100).also { it.start() }
