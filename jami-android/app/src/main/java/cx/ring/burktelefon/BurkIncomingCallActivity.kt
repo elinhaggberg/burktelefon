@@ -140,7 +140,12 @@ class BurkIncomingCallActivity : AppCompatActivity() {
 
     companion object {
         private const val RING_DURATION_MS = 1700L
-        private const val ANSWER_TIMEOUT_MS = 25_000L
+
+        // Not private: BurkCallFailedActivity.QUICK_FAILURE_THRESHOLD_MS is
+        // derived from this, so a genuinely-timed-out unanswered call (which
+        // only ever happens after this many ms) is never mistaken for a
+        // technical failure on the caller's side.
+        const val ANSWER_TIMEOUT_MS = 25_000L
         private const val EXTRA_ACCOUNT_ID = "burk.accountId"
 
         fun intent(context: Context, accountId: String, callId: String) =
